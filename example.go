@@ -1,14 +1,22 @@
-package go_httpclient
+package main
 
 import (
+	"fmt"
+	"io/ioutil"
+
 	"github.com/CaptainStorm21/go-http-client/gohttp"
 )
 
-func exampleUsage() {
-
+func main() {
 	client := gohttp.New()
+	
+	response, err := client.Get( url:"https://api.github.com", headers : nil )
+	if err != nil {
+		panic(err)
+	}
 
-	client.Get()
+	fmt.Println(response.StatusCode)
 
-
+	bytes, _ := ioutil.ReadAll(response.Body)
+	fmt.Println(string(bytes))
 }
