@@ -1,4 +1,4 @@
-package go_httpclient
+package main
 
 import (
 	"fmt"
@@ -7,11 +7,15 @@ import (
 	"github.com/CaptainStorm21/go-http-client/gohttp"
 )
 
-func exampleUsage() {
+func main() {
 
 	client := gohttp.New()
 
+	response, err := client.Get(url: "https://api.github.com", headers: nil)
 
-	client.Get()
+	if err != nil {
+		panic(err)
+	}
 
+	fmt.Println(response.StatusCode) 
 }
